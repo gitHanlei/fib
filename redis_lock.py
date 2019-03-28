@@ -7,6 +7,7 @@ import uuid
 import time
 
 from redis import Redis
+from redis import exceptions
 
 redis_client = Redis(host="localhost", port="6379")
 
@@ -45,6 +46,6 @@ def release_lock(lock_name, identifier):
                 return True
             pip.unwatch()
             break
-        except redis.excetions.WacthcError:
+        except exceptions.WacthcError:
             pass
     return False
